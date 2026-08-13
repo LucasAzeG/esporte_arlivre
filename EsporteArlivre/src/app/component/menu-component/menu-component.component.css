@@ -1,0 +1,13 @@
+#cabecalho, #ul-menu{
+    display: flex;
+    align-items: center;
+}
+
+#cabecalho{
+    width: 1000px;
+    height: 150px;
+    margin: 20px auto;
+    padding: 25px;
+    background-color: var(--cor-primaria);
+    justify-content: space-between;
+}

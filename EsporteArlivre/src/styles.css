@@ -1,0 +1,21 @@
+/* Oque eu colocar aqui eu quero colocar para todos componentes do projeto*/
+
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Bitcount Prop Single;
+}
+
+:root{
+    --cor-primaria: #1dfdf2;
+    --cor-segundaria: #22C55E;
+    --cor01: #647067;
+    --cor02: #f5f3e8;
+    --botao01: #02a5e9;
+    --botao02: #f08800;
+    --botao03: #ffffff;
+}
+
