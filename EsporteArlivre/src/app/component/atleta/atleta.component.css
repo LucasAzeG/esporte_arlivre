@@ -57,6 +57,7 @@ button{
     border: none;
     color: var(--branca);
     font-size: 20px;
+    margin-top: 20px;
 }
 
 #btnAdd{
