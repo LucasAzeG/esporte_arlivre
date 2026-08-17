@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Atleta } from '../models/Atleta';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AtletaServiceService {
+  
   // Declaração de ARRAY Atletas
   private atletas: Atleta[] = []
 
