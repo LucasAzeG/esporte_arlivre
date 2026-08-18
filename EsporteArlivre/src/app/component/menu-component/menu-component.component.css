@@ -35,15 +35,16 @@
 
 #ul-menu{
     list-style: none;
-    justify-content: right;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
 .Ink-menu{
     color: var(--branca);
     text-decoration: none;
-    margin: 0px 10px;
+    white-space: nowrap;
     transition: 0.5s ease;
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .Ink-menu:hover{

@@ -30,7 +30,7 @@ export class AtletaComponent {
   exibirDados() {
     console.log(this.nome, this.cpf, this.sexo, this.cep, this.ruaLogradouro, this.bairro, this.cidade, this.uf)
 
-    this.limparDados
+    this.limparDados()
   }
 
   limparDados() {
@@ -44,7 +44,7 @@ export class AtletaComponent {
     this.uf = ''
   }
 
-  salvar(){
+  enviarDadosAtleta(){
     const atleta = new Atleta()
     atleta.nome = this.nome
     atleta.cpf = this.cpf
@@ -55,7 +55,14 @@ export class AtletaComponent {
     atleta.cidade = this.cidade
     atleta.uf = this.uf
 
-    this.atletaService.adicionarAtleta(atleta)
+    this.atletaService.salvarAtleta(atleta).subscribe({
+      next: (resposta)=>{
+        console.log( resposta)
+      }, 
+      error:(msgErro)=>{
+        console.log( msgErro)
+      }
+    })
 
     this.limparDados()
 
