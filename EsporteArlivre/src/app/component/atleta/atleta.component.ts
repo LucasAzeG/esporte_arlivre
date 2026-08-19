@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AtletaServiceService } from '../../service/atleta-service.service';
 import { Atleta } from '../../models/Atleta';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-atleta',
@@ -21,16 +22,29 @@ export class AtletaComponent {
   cidade = ''
   uf = ''
 
-  //Declaração do construtor
-  constructor(private atletaService: AtletaServiceService){
+  idAtleta = 0
+  editar = false
 
-  }
+  //Declaração do construtor
+  constructor(
+    private atletaService: AtletaServiceService,
+    private http: ActivatedRoute
+    ){}
 
   //DECLARAÇÃO DE FUNÇÕES
   exibirDados() {
     console.log(this.nome, this.cpf, this.sexo, this.cep, this.ruaLogradouro, this.bairro, this.cidade, this.uf)
 
     this.limparDados()
+  }
+
+  ngOnInit(){
+    this.idAtleta = Number(this.http.snapshot.paramMap.get('id'))
+
+    if(this.idAtleta > 0){
+      this.editar = true
+      this.carregaDados(this.idAtleta)
+    }
   }
 
   limparDados() {
@@ -75,14 +89,29 @@ export class AtletaComponent {
     atleta.cidade = this.cidade
     atleta.uf = this.uf
 
-    this.atletaService.salvarAtleta(atleta).subscribe({
-      next: (resposta)=>{
-        console.log( resposta)
-      }, 
-      error:(msgErro)=>{
-        console.log( msgErro)
-      }
-    })
+    if(this.editar){
+      atleta.id = this.idAtleta
+
+      this.atletaService.alterarAtleta(atleta).subscribe({
+        next: (resposta)=>{
+          console.log( resposta)
+        }, 
+        error:(msgErro)=>{
+          console.log( msgErro)
+        }
+      })
+    }else{
+      this.atletaService.salvarAtleta(atleta).subscribe({
+        next: (resposta)=>{
+          console.log( resposta)
+        }, 
+        error:(msgErro)=>{
+          console.log( msgErro)
+        }
+      })
+    }
+
+
 
     this.limparDados()
 
