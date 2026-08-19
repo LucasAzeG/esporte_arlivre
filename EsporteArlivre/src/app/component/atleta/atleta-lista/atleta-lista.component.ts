@@ -3,6 +3,7 @@ import { Atleta } from '../../../models/Atleta';
 import { AtletaServiceService } from '../../../service/atleta-service.service';
 import { Router } from '@angular/router';
 import { signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({

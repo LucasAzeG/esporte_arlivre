@@ -44,6 +44,26 @@ export class AtletaComponent {
     this.uf = ''
   }
 
+  carregaDados(idAtleta: number){
+    this.atletaService.listarAtleta(idAtleta).subscribe({
+      next:(dadosAtleta)=>{
+        this.nome = dadosAtleta.nome
+        this.cpf = dadosAtleta.cpf
+        this.sexo = dadosAtleta.sexo
+        this.cep = dadosAtleta.cep
+        this.ruaLogradouro = dadosAtleta.ruaLogradouro
+        this.bairro = dadosAtleta.bairro
+        this.cidade = dadosAtleta.cidade
+        this.uf = dadosAtleta.uf
+
+
+      },
+      error: (msgErro)=>{
+        console.log( 'ERRO AO LISTAR ATLETA ', msgErro)
+      }
+    })
+  }
+
   enviarDadosAtleta(){
     const atleta = new Atleta()
     atleta.nome = this.nome

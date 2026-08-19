@@ -34,16 +34,16 @@
     justify-content: space-around;
   }
 
-  .Ink-atleta{
+  .lnk-atleta{
     text-decoration: none;
     cursor: pointer;
     font-weight: bold;
   }
 
-  .Ink-alterar{
+  .lnk-alterar{
     color: var(--botao02);
   }
 
-  .Ink-excluir {
+  .lnk-excluir {
     color: var(--botao01);
   }
