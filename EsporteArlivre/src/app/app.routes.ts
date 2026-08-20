@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { AtletaComponent } from './component/atleta/atleta.component';
 import { CadastroCorridasComponent } from './component/cadastro-corridas/cadastro-corridas.component';
 import { AtletaListaComponent } from './component/atleta/atleta-lista/atleta-lista.component';
+import { ListaCorridasComponent } from './component/cadastro-corridas/lista-corridas/lista-corridas.component';
 
 export const routes: Routes = [
 
@@ -29,7 +30,15 @@ export const routes: Routes = [
         component: CadastroCorridasComponent
     },
     {
+        path:"cadastro-corridas/:id",
+        component: CadastroCorridasComponent
+    },
+    {
         path:"listaAtletas",
         component: AtletaListaComponent
+    },
+    {
+        path:"lista-corridas",
+        component: ListaCorridasComponent
     }
 ];

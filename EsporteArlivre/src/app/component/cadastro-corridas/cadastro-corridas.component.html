@@ -2,7 +2,7 @@
 
     <h2>Cadastro de Corrida</h2>
 
-    <form action="" id="form-corrida" (submit)="salvar()">
+    <form action="" id="form-corrida" (ngSubmit)="salvar()">
 
         <label for="descricao-corrida">Descrição da Corrida</label>
         <textarea name="descricao-corrida" id="descricao-corrida" class="input01" [(ngModel)]="descricaoCorrida" rows="4" placeholder="Descreva sua corrida"></textarea>

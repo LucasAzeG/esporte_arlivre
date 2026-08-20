@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CadastroCorrida } from '../models/CadastroCorrida';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +10,28 @@ export class CadastroCorridasService {
   // Declaração do ARRAY de corridas
   private cadastrocorridas: CadastroCorrida[] = [];
 
-  constructor() { }
+  // 2. Declarar a propriedade da URL da API
+  private API_URL = 'http://localhost:8080/corridas';
+
+  constructor(private http: HttpClient) { }
 
   // Adicionar elemento
-  adicionarCadastroCorrida(cadastrocorrida: CadastroCorrida) {
-    // 1. Gera o ID primeiro
-    cadastrocorrida.id = this.cadastrocorridas.length + 1;
-    // 2. Adiciona ao array apenas UMA vez
-    this.cadastrocorridas.push(cadastrocorrida);
+  adicionarCadastroCorrida(corrida: CadastroCorrida): Observable<void> {
+    return new Observable((observer) => {
+      corrida.id = this.cadastrocorridas.length + 1;
+      this.cadastrocorridas.push(corrida);
+      
+      observer.next(); 
+      observer.complete();
+    });
   }
 
   // Listar elementos
-  listarDescricaoCorrida(): CadastroCorrida[] {
-    console.table(this.cadastrocorridas);
-    return this.cadastrocorridas;
+  listarDescricaoCorrida(): Observable<CadastroCorrida[]> {
+    return new Observable((observer) => {
+      observer.next(this.cadastrocorridas); // Retorna a lista gravada na memória
+      observer.complete();
+    });
   }
 
   // Remover por ID

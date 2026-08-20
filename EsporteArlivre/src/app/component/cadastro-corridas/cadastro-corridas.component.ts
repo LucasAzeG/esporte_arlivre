@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CadastroCorridasService } from '../../service/cadastrocorrida.service';
 import { CadastroCorrida } from '../../models/CadastroCorrida';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-corridas',
@@ -17,7 +18,10 @@ export class CadastroCorridasComponent {
   distanciaDisponiveis: string = '';
 
   // 1. Nome da variável padronizado com 'c' minúsculo (cadastroService)
-  constructor(private cadastroService: CadastroCorridasService) {}
+  constructor(
+    private cadastroService: CadastroCorridasService,
+    private router: Router
+    ) {}
 
   exibirDados() {
     console.log(this.descricaoCorrida, this.dataCorrida, this.distanciaDisponiveis);
@@ -39,9 +43,15 @@ export class CadastroCorridasComponent {
       distanciaDisponiveis: this.distanciaDisponiveis
     };
 
+    
+
     // 3. Chamamos os métodos do serviço e da classe (FORA do console.log)
-    this.cadastroService.adicionarCadastroCorrida(novaCorrida);
-    this.limparDados();
-    this.cadastroService.listarDescricaoCorrida();
+    this.cadastroService.adicionarCadastroCorrida(novaCorrida).subscribe({
+      next: () => {
+        this.limparDados();
+        this.router.navigate(['/listaCorridas']); // 3. Redireciona para a lista
+      },
+      error: (err) => console.log('Erro ao salvar corrida', err)
+    });
   }
 }

@@ -1,0 +1,15 @@
+<section id="section-lista-corridas">
+    <h2>Lista de Corridas</h2>
+  
+    @for (corrida of listaCorridas(); track corrida.id) {
+      <div class="corrida-item">
+        <span class="span-dados-corridas">
+          {{ corrida.id }} - {{ corrida.descricaoCorrida }} | Data: {{ corrida.dataCorrida }} | Distância: {{ corrida.distanciaDisponiveis }}
+        </span>
+      </div>
+    } @empty {
+      <div class="div-item-pessoa">
+        NENHUMA CORRIDA CADASTRADA
+      </div>
+    }
+  </section>
