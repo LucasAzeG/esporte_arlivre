@@ -6,6 +6,10 @@
         <span class="span-dados-corridas">
           {{ corrida.id }} - {{ corrida.descricaoCorrida }} | Data: {{ corrida.dataCorrida }} | Distância: {{ corrida.distanciaDisponiveis }}
         </span>
+        <span class="span-lnk-corridas">
+          <a class="lnk-corrida lnk-alterar" style="cursor: pointer;" (click)="carregaDadosCorridaForm(corrida)">A</a>
+          <a class="lnk-corrida lnk-excluir" style="cursor: pointer;" (click)="excluir(corrida.id)">E</a>
+        </span>
       </div>
     } @empty {
       <div class="div-item-pessoa">

@@ -33,3 +33,26 @@
     align-items: center;
     justify-content: space-around;
   }
+
+  .span-lnk-corridas {
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .lnk-corrida{
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+  }
+
+  .lnk-alterar{
+    color: var(--botao02);
+  }
+
+  .lnk-excluir {
+    color: var(--botao01);
+  }

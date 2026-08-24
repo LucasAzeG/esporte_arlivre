@@ -27,15 +27,15 @@ export class AtletaListaComponent {
   listar() {
     this.listaService.listarAtletas().subscribe({
       next: (dadosAtletas) => {
-        //this.listaAtletas = [...dadosAtletas].sort((a, b) => a.nome.localeCompare(b.nome))
-        this.listaAtletas.set([...dadosAtletas].sort((a, b) => a.nome.localeCompare(b.nome)))
-
-        console.table(this.listaAtletas())
+        // Proteção adicionada: (a.nome || '') evita erro se o nome vier null
+        this.listaAtletas.set(
+          [...dadosAtletas].sort((a, b) => (a.nome || '').localeCompare(b.nome || ''))
+        );
       },
       error: (msgErro) => {
-        console.log("Erro ao listar Atletas ", msgErro)
+        console.log("Erro ao listar Atletas ", msgErro);
       }
-    })
+    });
   }
 
   excluir(id: number) {
@@ -55,5 +55,21 @@ export class AtletaListaComponent {
 
   carregaDadosAtletaForm(atleta: Atleta) {
     this.router.navigate(['/cadastroAtleta', atleta.id])
+  }
+
+  calcularIdade(dataNascimento?: string): string {
+    if (!dataNascimento) return 'N/A';
+  
+    const hoje = new Date();
+    const nascimento = new Date(dataNascimento);
+    
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
+  
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
+    }
+  
+    return idade >= 0 ? `${idade} anos` : 'N/A';
   }
 }

@@ -1,7 +1,7 @@
 <section id="form">
     <h2>{{!editar? 'Cadastrar' : 'Alterar'}} Atleta</h2>
 
-    <form action="" id="form-atleta"  (submit)="enviarDadosAtleta()">
+    <form action="" id="form-atleta" (ngSubmit)="enviarDadosAtleta()" novalidate>
         <label for="nome">Nome Completo*</label>
         <input type="text" name="nome" id="nome" class="input01" [(ngModel)] = "nome" maxlength="60" required placeholder="Digite o nome Completo">
 
@@ -12,6 +12,15 @@
         <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoM" class="radio01" required value="M">Masculino
         <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoF" class="radio01" required value="F">Feminino
         <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoN" class="radio01" required value="N">Neutro
+
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input type="date" id="dataNascimento" name="dataNascimento"  [(ngModel)]="dataNascimento"
+>       <!-- Exibe a idade em tempo real assim que a data é selecionada -->
+        @if (calcularIdade() !== null) {
+        <div style="margin-top: 8px;">
+            <strong>Idade atual:</strong> {{ calcularIdade() }} anos
+        </div>
+        }
 
         <label for="cep">CEP*</label>
         <input type="text" name="cep" [(ngModel)] = "cep" id="cep" class="input02" maxlength="9" required placeholder="Digite o CEP">

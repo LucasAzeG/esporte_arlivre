@@ -56,4 +56,21 @@ export class CadastroCorridasService {
       this.cadastrocorridas[posArray] = cadastrocorrida;
     }
   }
+
+  // Buscar por ID
+buscarPorId(id: number): Observable<CadastroCorrida | undefined> {
+  return new Observable((observer) => {
+    const corrida = this.cadastrocorridas.find(c => c.id === id);
+    observer.next(corrida);
+    observer.complete();
+  });
+}
+
+excluir(id: number): Observable<boolean> {
+  return new Observable((observer) => {
+    this.cadastrocorridas = this.cadastrocorridas.filter(c => c.id !== id);
+    observer.next(true);
+    observer.complete();
+  });
+}
 }

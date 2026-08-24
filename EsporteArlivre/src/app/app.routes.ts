@@ -38,7 +38,7 @@ export const routes: Routes = [
         component: AtletaListaComponent
     },
     {
-        path:"lista-corridas",
+        path:"listaCorridas",
         component: ListaCorridasComponent
     }
 ];

@@ -8,4 +8,5 @@ export class Atleta{
     bairro: string = ''
     cidade: string = ''
     uf: string = ''
+    dataNascimento?: string;
 }

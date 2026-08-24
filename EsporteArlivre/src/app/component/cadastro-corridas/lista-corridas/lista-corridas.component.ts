@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { signal } from '@angular/core';
 import { CadastroCorrida } from '../../../models/CadastroCorrida';
 import { CadastroCorridasService } from '../../../service/cadastrocorrida.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-corridas',
@@ -14,7 +15,9 @@ export class ListaCorridasComponent {
   
   listaCorridas = signal<CadastroCorrida[]>([]);
 
-  constructor(private corridaService: CadastroCorridasService) {}
+  constructor(private corridaService: CadastroCorridasService,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
     this.listar();
@@ -32,5 +35,21 @@ export class ListaCorridasComponent {
   }
 
 
+// 3. Criar a função que faltava
+carregaDadosCorridaForm(corrida: CadastroCorrida) {
+  this.router.navigate(['/cadastro-corridas', corrida.id]);
+}
+
+excluir(id: number) {
+  if (confirm("Deseja realmente excluir esta corrida?")) {
+    this.corridaService.excluir(id).subscribe({
+      next: () => {
+        console.log("Corrida excluída com sucesso!");
+        this.listar(); // Recarrega a lista na tela
+      },
+      error: (msgErro) => console.log("Erro ao excluir corrida", msgErro)
+    });
+  }
+}
 
 }
