@@ -1,16 +1,29 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 
-import { CadastroCorridaService } from './cadastrocorrida.service';
+import { CadastroCorridasService } from './cadastrocorrida.service';
 
 describe('CadastrocorridaService', () => {
-  let service: CadastroCorridaService;
+
+  let service: CadastroCorridasService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CadastroCorridaService);
+
+    TestBed.configureTestingModule({
+      providers: [
+        CadastroCorridasService,
+        provideHttpClient()
+      ]
+    });
+
+    service = TestBed.inject(CadastroCorridasService);
+
   });
 
   it('should be created', () => {
+
     expect(service).toBeTruthy();
+
   });
+
 });

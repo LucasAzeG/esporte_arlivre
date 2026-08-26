@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CadastroCorridasService } from '../../service/cadastrocorrida.service';
 import { CadastroCorrida } from '../../models/CadastroCorrida';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-corridas',
@@ -23,8 +25,10 @@ export class CadastroCorridasComponent implements OnInit {
   constructor(
     private cadastroService: CadastroCorridasService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
     ) {}
+
 
     ngOnInit(): void {
       // Captura o ID que vem pela URL (ex: cadastro-corridas/1)
