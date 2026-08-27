@@ -1,24 +1,38 @@
 <section id="form">
     <h2>{{!editar? 'Cadastrar' : 'Alterar'}} Atleta</h2>
 
-    <form action="" id="form-atleta" (ngSubmit)="enviarDadosAtleta()" novalidate>
+    <form #form="ngForm" id="form-atleta" (ngSubmit)="enviarDadosAtleta(form)" novalidate>
+
         <label for="nome">Nome Completo*</label>
-        <input type="text" name="nome" id="nome" class="input01" [(ngModel)] = "nome" maxlength="60" required placeholder="Digite o nome Completo">
+        <input type="text" name="nome" id="nome" class="input01" [(ngModel)] = "nome" maxlength="60" required placeholder="Digite o nome Completo" #formNome="ngModel"
+        >
+        @if (formNome.touched && formNome.invalid) {
+            <small class="campo-obrigatorio">Campo obrigatório!</small>
+          }
 
         <label for="cpf">CPF*</label>
-        <input type="text" name="cpf" id="cpf" class="input02"  [(ngModel)] = "cpf" maxlength="14" required placeholder="Digite o CPF">
+        <input type="text" name="cpf" id="cpf" class="input02"  [(ngModel)] = "cpf" maxlength="14" required placeholder="Digite o CPF" (keydown)="somenteCpf($event)">
+        @if (form.submitted && !cpf) {
+            <small class="campo-obrigatorio">Campo obrigatório!</small>
+          }
 
         <label for="sexo">Sexo*</label>
-        <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoM" class="radio01" required value="M">Masculino
-        <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoF" class="radio01" required value="F">Feminino
-        <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoN" class="radio01" required value="N">Neutro
+        <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoM" class="radio01" #formSexo="ngModel" required value="M">Masculino
+        <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoF" class="radio01" #formSexo="ngModel" required value="F">Feminino
+        <input type="radio" name="sexo" [(ngModel)] = "sexo" id="sexoN" class="radio01" #formSexo="ngModel" required value="N">Neutro
+        @if (formSexo.touched && formSexo.invalid) {
+            <small class="campo-obrigatorio">Campo obrigatório!</small>
+          }
 
         <label for="dataNascimento">Data de Nascimento</label>
-        <input type="date" id="dataNascimento" name="dataNascimento"  [(ngModel)]="dataNascimento"
->       <!-- Exibe a idade em tempo real assim que a data é selecionada -->
+        <input type="date" id="dataNascimento" name="dataNascimento"  [(ngModel)]="dataNascimento" #formDataNascimento="ngModel" required>       <!-- Exibe a idade em tempo real assim que a data é selecionada -->
+        @if (formDataNascimento.touched && formDataNascimento.invalid) {
+            <small class="campo-obrigatorio">Campo obrigatório!</small>
+          }
+  
         @if (calcularIdade() !== null) {
         <div style="margin-top: 8px;">
-            <strong>Idade atual:</strong> {{ calcularIdade() }} anos
+        <strong>Idade atual:</strong> {{ calcularIdade() }} anos
         </div>
         }
 

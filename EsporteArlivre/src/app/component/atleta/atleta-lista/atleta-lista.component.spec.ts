@@ -16,7 +16,7 @@ describe('AtletaComponent', () => {
     {
       id: 1,
       nome: 'Atleta Um',
-      cpf: 12345678900,
+      cpf: '12345678900',
       sexo: 'M',
       cep: 49000000,
       ruaLogradouro: 'Rua A',
@@ -28,7 +28,7 @@ describe('AtletaComponent', () => {
     {
       id: 2,
       nome: 'Atleta Dois',
-      cpf: 98765432100,
+      cpf: '98765432100',
       sexo: 'F',
       cep: 49000000,
       ruaLogradouro: 'Rua B',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AtletaServiceService } from '../../service/atleta-service.service';
 import { Atleta } from '../../models/Atleta';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AtletaComponent {
   //Declarando Atributos
   nome = ''
-  cpf = 0
+  cpf = ''
   sexo = ''
   cep = 0
   ruaLogradouro = ''
@@ -51,7 +51,7 @@ export class AtletaComponent {
 
   limparDados() {
     this.nome = ''
-    this.cpf = 0
+    this.cpf = ''
     this.sexo = ''
     this.cep = 0
     this.ruaLogradouro = ''
@@ -61,11 +61,31 @@ export class AtletaComponent {
     this.dataNascimento = ''
   }
 
+  somenteCpf(event: KeyboardEvent) {
+    const tecla = event.key;
+  
+    const teclasPermitidas = [
+      'Backspace',
+      'Delete',
+      'ArrowLeft',
+      'ArrowRight',
+      'Tab'
+    ];
+  
+    if (teclasPermitidas.includes(tecla)) {
+      return;
+    }
+  
+    if (!/[0-9.-]/.test(tecla)) {
+      event.preventDefault();
+    }
+  }
+
   carregaDados(idAtleta: number) {
     this.atletaService.listarAtleta(idAtleta).subscribe({
       next: (dadosAtleta) => {
         this.nome = dadosAtleta.nome || '';
-        this.cpf = dadosAtleta.cpf || 0;
+        this.cpf = dadosAtleta.cpf || '';
         this.sexo = dadosAtleta.sexo || '';
         this.cep = dadosAtleta.cep || 0;
         this.ruaLogradouro = dadosAtleta.ruaLogradouro || '';
@@ -80,7 +100,16 @@ export class AtletaComponent {
     });
   }
 
-  enviarDadosAtleta(){
+  enviarDadosAtleta(form: NgForm){
+
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      console.log('Formulário inválido');
+      return;
+    }
+
+  
+  
     console.log('Entrou no enviar')
     const atleta = new Atleta()
     atleta.nome = this.nome
@@ -135,5 +164,7 @@ export class AtletaComponent {
     }
 
     return idade >= 0 ? idade : null;
+
+    
   }
 }

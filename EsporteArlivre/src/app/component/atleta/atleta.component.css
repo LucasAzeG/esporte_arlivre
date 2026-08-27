@@ -69,3 +69,15 @@ button{
     background-color: var(--botao02);
     margin-left: 20px;
 }
+
+.erro-nome {
+    color: red;
+    font-size: 14px;
+  }
+
+  .campo-obrigatorio {
+    display: block;
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+  }
