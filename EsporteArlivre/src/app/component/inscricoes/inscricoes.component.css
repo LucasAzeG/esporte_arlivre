@@ -1,0 +1,128 @@
+.container {
+  width: 85%;
+  margin: 40px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  margin-bottom: 30px;
+  color: #222;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.linha {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.campo {
+  flex: 1;
+}
+
+.campo-grande {
+  flex: 2;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+.campo select,
+.campo input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.cpf-busca {
+  display: flex;
+  gap: 8px;
+}
+
+.cpf-busca input {
+  flex: 1;
+}
+
+.cpf-busca button {
+  padding: 0 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2463eb;
+  color: white;
+  cursor: pointer;
+}
+
+.cpf-busca button:hover {
+  background-color: #174fc7;
+}
+
+.distancias {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 40px;
+}
+
+.distancias label {
+  font-weight: normal;
+  margin: 0;
+}
+
+.distancias input {
+  margin-right: 5px;
+}
+
+.valor {
+  margin-top: 15px;
+  padding: 20px;
+  background-color: #f5f7f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.valor span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #249447;
+}
+
+.termos {
+  margin: 20px 0;
+}
+
+.termos label {
+  font-size: 14px;
+}
+
+.botao-finalizar {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2fa84f;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.botao-finalizar:hover {
+  background-color: #248b40;
+}

@@ -1,0 +1,206 @@
+<div class="container">
+
+  <h1>Inscrição na Corrida</h1>
+
+  <div class="linha">
+
+    <div class="campo campo-grande">
+
+      <label>Atleta Cadastrado</label>
+
+      <select
+        [(ngModel)]="atletaSelecionado"
+        (change)="selecionarAtleta()">
+
+        <option [ngValue]="null">
+          Selecione o atleta
+        </option>
+
+        @for (atleta of atletas; track atleta.id) {
+
+          <option [ngValue]="atleta">
+            {{ atleta.nome }} - {{ atleta.cpf }}
+          </option>
+
+        }
+
+      </select>
+
+    </div>
+
+    <div class="campo">
+
+      <label>Ou Buscar por CPF</label>
+
+      <div class="cpf-busca">
+
+        <input
+          type="text"
+          placeholder="000.000.000-00"
+          [(ngModel)]="cpfBusca">
+
+        <button
+          type="button"
+          (click)="buscarPorCpf()">
+
+          Buscar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="linha">
+
+    <div class="campo campo-grande">
+
+      <label>Corrida Escolhida</label>
+
+      <select [(ngModel)]="corridaSelecionada">
+
+        <option [ngValue]="null">
+          Selecione a corrida
+        </option>
+
+        @for (corrida of corridas; track corrida.id) {
+
+          <option [ngValue]="corrida">
+
+            {{ corrida.descricaoCorrida }}
+            -
+            {{ corrida.dataCorrida }}
+
+          </option>
+
+        }
+
+      </select>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>Distância da Prova</label>
+
+      <div class="distancias">
+
+        <label>
+          <input
+            type="radio"
+            name="distancia"
+            value="5km"
+            [(ngModel)]="distancia"
+            (change)="escolherDistancia()">
+
+          5km
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="distancia"
+            value="10km"
+            [(ngModel)]="distancia"
+            (change)="escolherDistancia()">
+
+          10km
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="distancia"
+            value="25km"
+            [(ngModel)]="distancia"
+            (change)="escolherDistancia()">
+
+          25km
+        </label>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="linha">
+
+    <div class="campo">
+
+      <label>Tamanho da Camiseta (Kit)</label>
+
+      <select [(ngModel)]="tamanhoCamiseta">
+
+        <option value="">
+          Selecione
+        </option>
+
+        <option value="PP">PP</option>
+        <option value="P">P</option>
+        <option value="M">M</option>
+        <option value="G">G</option>
+        <option value="GG">GG</option>
+        <option value="XGG">XGG</option>
+
+      </select>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>Categoria / Faixa Etária</label>
+
+      <input
+        type="text"
+        [value]="categoria"
+        readonly
+        placeholder="Selecione um atleta">
+
+    </div>
+
+  </div>
+
+
+  <div class="valor">
+
+    <strong>Valor da Inscrição:</strong>
+
+    <span>
+      R$ {{ valorInscricao.toFixed(2).replace('.', ',') }}
+    </span>
+
+  </div>
+
+
+  <div class="termos">
+
+    <label>
+
+      <input
+        type="checkbox"
+        [(ngModel)]="termosAceitos">
+
+      Li e aceito os termos do regulamento da prova e declaração de saúde.
+
+    </label>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="botao-finalizar"
+    (click)="finalizarInscricao()">
+
+    Finalizar e Ir para Pagamento
+
+  </button>
+
+</div>
