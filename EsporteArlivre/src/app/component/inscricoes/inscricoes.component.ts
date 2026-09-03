@@ -121,12 +121,12 @@ export class InscricoesComponent implements OnInit {
 
   calcularIdade(atleta: Atleta): number | null {
 
-    if (!atleta.dataNascimento) {
+    if (!atleta.data_nascimento) {
       return null;
     }
 
     const hoje = new Date();
-    const nascimento = new Date(atleta.dataNascimento);
+    const nascimento = new Date(atleta.data_nascimento);
 
     let idade = hoje.getFullYear() - nascimento.getFullYear();
 
